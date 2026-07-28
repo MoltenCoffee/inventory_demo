@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://ca2japamag7as"]
+
+[ext_resource type="Script" uid="uid://crqx2ccpib5rh" path="res://ui/hotbar.gd" id="1_cb12i"]
+[ext_resource type="PackedScene" uid="uid://b5835o07nhxm2" path="res://ui/inventory_slot.tscn" id="2_2m22k"]
+
+[node name="Hotbar" type="Control" unique_id=1175805759]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cb12i")
+slot_scene = ExtResource("2_2m22k")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=823880731]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -64.0
+offset_right = 32.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1500168411]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer" unique_id=27144596]
+layout_mode = 2
+alignment = 1

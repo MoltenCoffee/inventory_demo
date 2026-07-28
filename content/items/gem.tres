@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bqe65l7wh8uxm"]
+
+[ext_resource type="Texture2D" uid="uid://btg4cfpe7lnmk" path="res://content/icons/gem.png" id="1_u3imk"]
+[ext_resource type="Script" uid="uid://dxy16vx8fl2ur" path="res://systems/item.gd" id="2_ahrka"]
+
+[resource]
+script = ExtResource("2_ahrka")
+icon = ExtResource("1_u3imk")
+name = &"gem"
+weight = 1.0
+display_name = "Gem"
+metadata/_custom_type_script = "uid://dxy16vx8fl2ur"

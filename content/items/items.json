@@ -1,0 +1,15 @@
+[
+	{
+		"icon": "cookie.png",
+		"name": "cookie",
+		"display_name": "Cookie",
+		"weight": 0.1
+	},
+	{
+		"icon": "banana.png",
+		"name": "banana",
+		"display_name": "Banana",
+		"weight": 0.2,
+		"stack_size": 32
+	}
+]

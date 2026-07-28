@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cvb8nhrsm3v32"]
+
+[ext_resource type="Texture2D" uid="uid://bwkjl0od7xpqr" path="res://content/icons/pencil.png" id="1_5giyj"]
+[ext_resource type="Script" uid="uid://dxy16vx8fl2ur" path="res://systems/item.gd" id="2_76mcq"]
+
+[resource]
+script = ExtResource("2_76mcq")
+icon = ExtResource("1_5giyj")
+name = &"pencil"
+weight = 0.1
+display_name = "Pencil"
+metadata/_custom_type_script = "uid://dxy16vx8fl2ur"

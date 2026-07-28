@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://sm7cyuqim18a"]
+
+[ext_resource type="Shader" uid="uid://cb3eppvygrqax" path="res://ui/crosshair.gdshader" id="1_dslno"]
+[ext_resource type="Texture2D" uid="uid://cj7ie627a7065" path="res://content/icons/locate.png" id="2_60rj8"]
+
+[resource]
+shader = ExtResource("1_dslno")
+shader_parameter/image = ExtResource("2_60rj8")
+shader_parameter/color = Color(1, 1, 1, 1)

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://5xuddydmlhv"]
+
+[ext_resource type="Script" uid="uid://cwx3f8skbuk5e" path="res://ui/crosshair.gd" id="1_1rilw"]
+[ext_resource type="Material" uid="uid://sm7cyuqim18a" path="res://ui/crosshair.tres" id="2_q78qa"]
+
+[node name="Crosshair" type="Control" unique_id=1638537599]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1rilw")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1697132847]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer" unique_id=50028515]
+material = ExtResource("2_q78qa")
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+mouse_filter = 2

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://bcv036ahbam32"]
+
+[ext_resource type="Texture2D" uid="uid://lyepytkcimjr" path="res://content/icons/snowflake.png" id="1_ca5f7"]
+[ext_resource type="Script" uid="uid://dxy16vx8fl2ur" path="res://systems/item.gd" id="2_a6wtm"]
+
+[resource]
+script = ExtResource("2_a6wtm")
+icon = ExtResource("1_ca5f7")
+name = &"snowflake"
+stack_size = 128
+weight = 0.01
+display_name = "Snowflake"
+metadata/_custom_type_script = "uid://dxy16vx8fl2ur"

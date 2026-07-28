@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://ckhxj3k7n6bki"]
+
+[ext_resource type="Script" uid="uid://b6l2ujoqekhmi" path="res://ui/inventory.gd" id="1_70ao8"]
+[ext_resource type="Texture2D" uid="uid://blqlr7gugkdoy" path="res://content/icons/trash.png" id="2_olbmd"]
+
+[node name="Inventory" type="Control" unique_id=1189647555]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_70ao8")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=682005564]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1349922808]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=885960224]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=243950066]
+layout_mode = 2
+
+[node name="InventoryGrid" type="GridContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=547154576]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+columns = 9
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=204916382]
+layout_mode = 2
+
+[node name="InventoryHotbar" type="GridContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=606184102]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 9
+
+[node name="Buttons" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=132058857]
+layout_mode = 2
+
+[node name="ClearInventoryButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/Buttons" unique_id=1045118187]
+unique_name_in_owner = true
+layout_mode = 2
+icon = ExtResource("2_olbmd")

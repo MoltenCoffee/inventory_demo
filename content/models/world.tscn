@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b6h5wis1mumeq"]
+
+[ext_resource type="Script" uid="uid://bw8l06uwbs0d0" path="res://content/models/world.gd" id="1_32kdr"]
+[ext_resource type="PackedScene" uid="uid://kpycbkbag3bm" path="res://content/models/player.tscn" id="2_qyqaw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qyqaw"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_7r7c1"]
+sky_material = SubResource("ProceduralSkyMaterial_qyqaw")
+
+[sub_resource type="Environment" id="Environment_wpswn"]
+background_mode = 2
+sky = SubResource("Sky_7r7c1")
+glow_enabled = true
+
+[node name="World" type="Node3D" unique_id=1400615511]
+script = ExtResource("1_32kdr")
+player_scene = ExtResource("2_qyqaw")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1622750054]
+environment = SubResource("Environment_wpswn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1097705661]
+transform = Transform3D(-0.901221, -0.20912917, 0.37955984, 0.43301272, -0.3995191, 0.80801266, -0.017337546, 0.8925522, 0.4506106, 0, 48, 0)
+shadow_enabled = true
