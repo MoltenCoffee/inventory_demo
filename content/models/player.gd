@@ -1,22 +1,16 @@
 class_name Player
 extends CharacterBody3D
 
+## Player controller
+##
+## Although functional, this probably isn't the best example of a player controller out there.
+
 const SPEED := 5.0
 const SPRINT_SPEED := 8.5
 const JUMP_VELOCITY := 4.5
 const MOUSE_SENSITIVITY := 0.005
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-var is_inventory_open := false
-var active_hotbar_index := -1
-
-@onready var camera: Camera3D = $Camera3D
-@onready var interact_ray: RayCast3D = $Camera3D/RayCast3D
-@onready var crosshair: Crosshair = $HUD/Crosshair
-@onready var inventory_ui: Control = $HUD/Inventory
-@onready var message_label: Label = $HUD/MessageLabel
-@onready var message_timer: Timer = $HUD/MessageTimer
-@onready var hotbar: Hotbar = $HUD/Hotbar
 
 @export_range(1.0, 10.0, 0.1) var interaction_distance := 4.0 :
 	get():
@@ -28,11 +22,49 @@ var active_hotbar_index := -1
 @export var default_crosshair_color := Color(1.0, 1.0, 1.0, 0.5)
 @export var highlight_crosshair_color := Color(1.0, 0.5, 0.0, 0.5)
 
+var is_inventory_open := false
+var active_hotbar_index := -1
+
+@onready var camera: Camera3D = $Camera3D
+@onready var interact_ray: RayCast3D = $Camera3D/RayCast3D
+@onready var crosshair: Crosshair = $HUD/Crosshair
+@onready var inventory_ui: Control = $HUD/Inventory
+@onready var message_label: Label = $HUD/MessageLabel
+@onready var message_timer: Timer = $HUD/MessageTimer
+@onready var hotbar: Hotbar = $HUD/Hotbar
+
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	EventManager.item_picked.connect(_on_item_picked)
 	interact_ray.target_position.y = -interaction_distance
 	message_timer.timeout.connect(clear_message)
+
+
+func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity.y -= gravity * delta
+
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	
+	if is_inventory_open:
+		input_dir = Vector2.ZERO
+	
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var current_speed := SPRINT_SPEED if Input.is_action_pressed("sprint") else SPEED
+	
+	if direction:
+		velocity.x = direction.x * current_speed
+		velocity.z = direction.z * current_speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, current_speed)
+		velocity.z = move_toward(velocity.z, 0, current_speed)
+
+	move_and_slide()
+	_update_crosshair()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -79,32 +111,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
-
-func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	var input_dir := Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
-	
-	if is_inventory_open:
-		input_dir = Vector2.ZERO
-	
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	var current_speed := SPRINT_SPEED if Input.is_action_pressed("sprint") else SPEED
-	
-	if direction:
-		velocity.x = direction.x * current_speed
-		velocity.z = direction.z * current_speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, current_speed)
-		velocity.z = move_toward(velocity.z, 0, current_speed)
-
-	move_and_slide()
-	_update_crosshair()
 
 
 func display_message(message: String, time := 5.0) -> void:

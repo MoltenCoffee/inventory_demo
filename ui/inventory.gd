@@ -97,39 +97,3 @@ func _on_item_throw_requested(slot_index: int, origin: Vector3, forward: Vector3
 	
 	var throw_pos := origin + forward * 1.5
 	EventManager.item_dropped.emit(item_name, 1, throw_pos)
-
-
-func serialize() -> String:
-	var slots_data: Array[Dictionary] = []
-	for i in inventory_data.slots.size():
-		var slot := inventory_data.slots[i]
-		if not slot.is_empty():
-			var dict := slot.to_dict()
-			dict["slot_id"] = i
-			slots_data.append(dict)
-	
-	var data: Dictionary = {
-		"inventory_row_count": inventory_row_count,
-		"slots": slots_data
-	}
-	
-	return JSON.stringify(data)
-
-
-func populate(data: Dictionary) -> Error:
-	if not data.has("inventory_row_count") or typeof(data["inventory_row_count"]) != Variant.Type.TYPE_INT or not data.has("slots") or typeof(data["slots"]) != Variant.Type.TYPE_ARRAY:
-		printerr("Invalid inventory data")
-		return Error.ERR_INVALID_DATA
-	
-	inventory_row_count = data["inventory_row_count"]
-	inventory_data.init_slots(COLUMN_COUNT + COLUMN_COUNT * inventory_row_count)
-	build_ui()
-	
-	for i in data["slots"].size():
-		var slot_dict: Dictionary = data["slots"][i]
-		var slot_id: int = slot_dict["slot_id"]
-		
-		if slot_id >= 0 and slot_id < inventory_data.slots.size():
-			inventory_data.slots[slot_id].set_data(slot_dict["item_name"], slot_dict["quantity"])
-
-	return Error.OK

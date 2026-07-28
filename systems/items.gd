@@ -4,6 +4,7 @@ const ITEM_DIR := "res://content/items/"
 const ICON_DIR := "res://content/icons/"
 var items: Dictionary[StringName, Item]
 
+## Several ways of adding custom items are demonstrated below.
 func _init() -> void:
 	# Preconfigured resources
 	items.set(&"pencil", load(ITEM_DIR.path_join("pencil.tres")))
@@ -74,22 +75,27 @@ func _init() -> void:
 				items.set(item.name, item)
 
 
+## Returns the Item object for a given item name. Returns null if the item is not found.
 func get_item(item_name: StringName) -> Item:
 	return items.get(item_name)
 
 
+## Returns true if a given item is registered in the item database.
 func has_item(item_name: StringName) -> bool:
 	return items.has(item_name)
 
 
+## Returns the total number of items in the item database.
 func get_item_count() -> int:
 	return items.size()
 
 
+## Returns a random item name from the item database.
 func get_random_item_name() -> StringName:
 	var keys: Array[StringName] = items.keys()
 	return keys.pick_random()
 
 
+## Returns a random Item object from the item database.
 func get_random_item() -> Item:
 	return items[get_random_item_name()]

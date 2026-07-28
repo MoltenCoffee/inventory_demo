@@ -18,6 +18,7 @@ func _ready() -> void:
 	EventManager.hotbar_slot_selected.connect(_on_slot_selected)
 
 
+## Triggers on slot selection, changes the color of the selected to indicate selection
 func _on_slot_selected(index: int) -> void:
 	for i in slots.size():
 		slots[i].modulate = Color(1.0, 1.0, 1.0, 1.0) if i != index else Color(1.0, 0.8, 0.2, 1.0)

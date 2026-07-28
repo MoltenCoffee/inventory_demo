@@ -11,6 +11,8 @@ extends Resource
 @export var thickness_pixels := 1.0
 var mesh: Mesh
 
+
+## Returns a 3D mesh of the item, built from the icon.
 func get_mesh() -> Mesh:
 	if not icon:
 		printerr("Can't build mesh for item '%s' with missing icon" % name)
@@ -18,8 +20,8 @@ func get_mesh() -> Mesh:
 	_build_mesh()
 	return mesh
 
-# This is a long and complicated method. It takes the icon files and creates 3D
-# meshes from it. This is probably overkill.
+## This is a long and complex method takes the icon file and creates a 3D meshe from it. This is probably overkill.
+## FIXME: from some angles, the mesh is see through. Possibly a winding issue.
 func _build_mesh() -> void:
 	if mesh: return
 	
